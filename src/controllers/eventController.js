@@ -15,6 +15,23 @@ async function register(req, res) {
   }
 }
 
+async function update(req, res) {
+  const { libelle } = req.body;
+  const { id } = req.params;
+
+  try {
+    const event = await Event.update({ libelle }, { where: { id } });
+    if (event) {
+      res.status(200).send({ message: "Event was updated successfully!" });
+    } else {
+      throw new Error("problem arising from the event");
+    }
+  } catch (error) {
+    res.status(500).send({ error: ` ${error}` });
+  }
+}
+
 module.exports = {
   register,
+  update,
 };
