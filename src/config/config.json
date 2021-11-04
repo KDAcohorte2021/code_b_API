@@ -5,19 +5,6 @@
     "database": "bqzsyur49imjxjywrnst",
     "host": "bqzsyur49imjxjywrnst-mysql.services.clever-cloud.com",
     "dialect": "mysql"
-  },
-  "test": {
-    "username": "upgujiakklhmet05",
-    "password": "ZY6A78TYojI26VT6Ly4P",
-    "database": "bqzsyur49imjxjywrnst",
-    "host": "bqzsyur49imjxjywrnst-mysql.services.clever-cloud.com",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "upgujiakklhmet05",
-    "password": "ZY6A78TYojI26VT6Ly4P",
-    "database": "bqzsyur49imjxjywrnst",
-    "host": "bqzsyur49imjxjywrnst-mysql.services.clever-cloud.com",
-    "dialect": "mysql"
   }
+  
 }
