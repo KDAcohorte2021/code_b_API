@@ -46,6 +46,19 @@ async function deleteEvent(req, res) {
   }
 }
 
+async function getAllEvents(req, res) {
+  try {
+    const events = await Event.findAll();
+    if (events) {
+      res.status(200).send({ events });
+    } else {
+      throw new Error("problem arising from the event");
+    }
+  } catch (error) {
+    res.status(500).send({ error: ` ${error}` });
+  }
+}
+
 module.exports = {
   register,
   updateEvent,
