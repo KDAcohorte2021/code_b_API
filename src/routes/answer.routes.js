@@ -3,6 +3,6 @@ const answerController = require("../controllers/answerController");
 
 const answerRouter = express.Router();
 
-answerRouter.post("/register", answerController.responde);
+answerRouter.post("/answer", answerController.answer);
 
 module.exports = answerRouter;

@@ -1,6 +1,6 @@
 const { Answers } = require("../models");
 
-async function responde(request, response) {
+async function answer(request, response) {
   const answerData = {
     suggestedId: request.body.questionId,
     questionId: request.body.questionId,
@@ -17,4 +17,4 @@ async function responde(request, response) {
   }
 }
 
-module.exports = { responde };
+module.exports = { answer };

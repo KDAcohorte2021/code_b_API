@@ -3,6 +3,7 @@ const cors = require("cors");
 const path = require("./config/paths");
 const { User, Role, UserRole, sequelize } = require("./models");
 const roleRouter = require("./routes/role.routes");
+const answerRouter = require("./routes/answer.routes");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8000;
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 // route exemple : app.use(path.authBaseURI, authRouter);
 
 app.use(path.roleBaseURI, roleRouter);
+app.use(path.answersBaseURI, answerRouter);
 
 // End routes
 
