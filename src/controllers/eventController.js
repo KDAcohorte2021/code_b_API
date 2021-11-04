@@ -79,4 +79,5 @@ module.exports = {
   updateEvent,
   deleteEvent,
   getAllEvents,
+  getEvent,
 };
