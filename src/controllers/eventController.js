@@ -59,8 +59,24 @@ async function getAllEvents(req, res) {
   }
 }
 
+async function getEvent(req, res) {
+  const { id } = req.params;
+
+  try {
+    const event = await Event.findOne({ where: { id } });
+    if (event) {
+      res.status(200).send({ event });
+    } else {
+      throw new Error("problem arising from the event");
+    }
+  } catch (error) {
+    res.status(500).send({ error: ` ${error}` });
+  }
+}
+
 module.exports = {
   register,
   updateEvent,
   deleteEvent,
+  getAllEvents,
 };
