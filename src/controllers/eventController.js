@@ -15,7 +15,7 @@ async function register(req, res) {
   }
 }
 
-async function update(req, res) {
+async function updateEvent(req, res) {
   const { libelle } = req.body;
   const { id } = req.params;
 
@@ -31,7 +31,23 @@ async function update(req, res) {
   }
 }
 
+async function deleteEvent(req, res) {
+  const { id } = req.params;
+
+  try {
+    const event = await Event.destroy({ where: { id } });
+    if (event) {
+      res.status(200).send({ message: "Event was deleted successfully!" });
+    } else {
+      throw new Error("problem arising from the event");
+    }
+  } catch (error) {
+    res.status(500).send({ error: ` ${error}` });
+  }
+}
+
 module.exports = {
   register,
-  update,
+  updateEvent,
+  deleteEvent,
 };
