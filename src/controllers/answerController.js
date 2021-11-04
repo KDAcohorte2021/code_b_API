@@ -11,10 +11,26 @@ async function answer(request, response) {
     if (!answer) {
       throw new Error("A problem occurred when adding the answer");
     }
-    response.status(201).send({ message: "Answer added successfully !" });
+    response
+      .status(201)
+      .send({ message: "Answer added successfully !", answer });
   } catch (error) {
-    res.status(500).send({ error: ` ${error}` });
+    response.status(500).send({ error: ` ${error}` });
   }
 }
 
-module.exports = { answer };
+async function getAnswers(request, response) {
+  try {
+    const answers = await Answers.findAll();
+    if (!answers) {
+      throw new Error("A problem occurred when getting answers");
+    }
+    response
+      .status(200)
+      .send({ message: "Answers found successfully !", answers });
+  } catch (error) {
+    response.status(500).send({ error: ` ${error}` });
+  }
+}
+
+module.exports = { answer, getAnswers };
