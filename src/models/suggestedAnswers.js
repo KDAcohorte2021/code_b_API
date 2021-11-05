@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.SuggestedAnswers.belongsTo(models.question, {
+        foreignkey: {
+          allowNull: false,
+          name: "questionId"
+        }
+      })
     }
   };
   SuggestedAnswers.init({
@@ -20,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     goodAnswer: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    questionId: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
