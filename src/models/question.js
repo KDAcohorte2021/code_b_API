@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class question extends Model {
+  class Question extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,15 +11,39 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.question.hasMany(models.SuggestedAnswers,{
+      models.Question.hasMany(models.SuggestedAnswers,{
         foreignKey:{
           allowNull: false,
-          name:"questionId",
+          name:"QuestionId",
+        }
+      })
+      models.Question.belongsTo(models.User, {
+        foreignKey:{
+          name :"userId",
+          allowNull:false,
+        }
+      })
+      models.Question.belongsTo(models.Type, {
+        foreignKey:{
+          name :"typeId",
+          allowNull:false,
+        }
+      })
+      models.Question.belongsTo(models.Theme, {
+        foreignKey:{
+          name :"themeId",
+          allowNull:false,
+        }
+      })
+      models.Question.belongsTo(models.Level, {
+        foreignKey:{
+          name :"levelId",
+          allowNull:false,
         }
       })
     }
   };
-  question.init({
+  Question.init({
     content: DataTypes.TEXT,
     explain: DataTypes.TEXT,
     userId: DataTypes.INTEGER,
@@ -28,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
     levelId: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'question',
+    modelName: 'Question',
   });
-  return question;
+  return Question;
 };
