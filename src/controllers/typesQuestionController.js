@@ -26,8 +26,11 @@ async function addTypesQuestion(req, res, next) {
         if (typesQuestion){
             res.status(200).send(typesQuestions);
         } 
+        else{
+            throw new Error(error);
+        }
       } catch (error) {
-          throw new Error(error);
+        res.status(500).send({ error: ` ${error}` });
       }
   }
 
@@ -38,8 +41,11 @@ async function addTypesQuestion(req, res, next) {
          if(oneTypesQuestion){
              res.status(200).send(oneTypesQuestion);
          }
+         else{
+            throw new Error(error);
+        }
       } catch (error) {
-          throw new Error(error);
+        res.status(500).send({ error: ` ${error}` });
       }
   }
 
@@ -50,8 +56,11 @@ async function addTypesQuestion(req, res, next) {
           if (typesQuestion) {
               res.status(200).send(typeQuestion);
           }
+          else{
+            throw new Error(error);
+        }
       } catch (error) {
-          throw new Error(error);
+        res.status(500).send({ error: ` ${error}` });
       }
   }
 
@@ -61,7 +70,7 @@ async function addTypesQuestion(req, res, next) {
         await TypesQuestion.destroy({where:{id:id}})
             res.status(200).send('type question is deleted');
     } catch (error) {
-        throw new Error(error);
+        res.status(500).send({ error: ` ${error}` });
     }
 }
   
