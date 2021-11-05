@@ -22,11 +22,19 @@ module.exports = (sequelize, DataTypes) => {
   SuggestedAnswers.init({
     content: {
       type:DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {msg: "Suggested answers must have a name"},
+        notEmpty: {msg: "Content must not be empty"}
+      }
     },
     goodAnswer: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {msg: "Suggested answers must have a name"},
+        notEmpty: {msg: "Good answer must not be empty"}
+      }
     },
     questionId: {
       type: DataTypes.INTEGER,
