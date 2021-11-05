@@ -3,8 +3,10 @@ const answerController = require("../controllers/answerController");
 
 const answerRouter = express.Router();
 
-answerRouter.get("/answer", answerController.getAnswers);
+answerRouter.get("/findOne/:id", answerController.getAnswer);
 
-answerRouter.post("/answer", answerController.answer);
+answerRouter.get("/findAll", answerController.getAnswers);
+
+answerRouter.post("/register", answerController.answer);
 
 module.exports = answerRouter;
