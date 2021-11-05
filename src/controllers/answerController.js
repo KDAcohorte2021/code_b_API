@@ -1,18 +1,11 @@
 const { Answers } = require("../models");
 
-async function answer(
-  { body: { suggestedId, questionId, userId, startedTime } },
-  response
-) {
+async function answer({ body: { suggestedId, questionId, userId } }, response) {
   const answerData = {
     suggestedId: suggestedId,
     questionId: questionId,
     userId: userId,
   };
-  let sendingTime = new Date().getTime();
-
-  if ((sendingTime - new Date(startedTime).getTime()) / 1000 > 30)
-    return response.status(408).json({ message: "Time out" });
 
   try {
     const answer = await Answers.create(answerData);
@@ -24,6 +17,38 @@ async function answer(
     response
       .status(201)
       .json({ message: "Answer added successfully !", answer });
+  } catch (error) {
+    response.status(500).json({ error: ` ${error}` });
+  }
+}
+
+async function updateAnswer(
+  { params: { id }, body: { suggestedId, questionId, userId } },
+  response
+) {
+  const answerData = {
+    suggestedId: suggestedId,
+    questionId: questionId,
+    userId: userId,
+  };
+  try {
+    const answer = await Answers.update(answerData, {
+      where: {
+        id,
+      },
+    });
+    const updatedAnswer = await Answers.findOne({
+      where: {
+        id,
+      },
+    });
+    if (!answer)
+      return response
+        .status(400)
+        .json({ error: "A problem occurred when adding the answer" });
+    response
+      .status(200)
+      .json({ message: "Answer updated successfully", updatedAnswer });
   } catch (error) {
     response.status(500).json({ error: ` ${error}` });
   }
@@ -62,4 +87,4 @@ async function getAnswers(request, response) {
   }
 }
 
-module.exports = { answer, getAnswer, getAnswers };
+module.exports = { answer, updateAnswer, getAnswer, getAnswers };

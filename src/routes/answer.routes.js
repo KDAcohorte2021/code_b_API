@@ -9,4 +9,6 @@ answerRouter.get("/findAll", answerController.getAnswers);
 
 answerRouter.post("/register", answerController.answer);
 
+answerRouter.put("/update/:id", answerController.updateAnswer);
+
 module.exports = answerRouter;
