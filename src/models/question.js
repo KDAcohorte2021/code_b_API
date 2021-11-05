@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.question.hasMany(models.SuggestedAnswers,{
+        foreignKey:{
+          allowNull: false,
+          name:"questionId",
+        }
+      })
     }
   };
   question.init({
