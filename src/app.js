@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 // route exemple : app.use(path.authBaseURI, authRouter);
 
 app.use(path.roleBaseURI, roleRouter);
+app.use(path.eventInitiatedBaseURI)
 
 // End routes
 

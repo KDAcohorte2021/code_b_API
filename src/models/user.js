@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Role, {
         foreignKey: "roleId",
       });
+      User.hasMany(Model.EventInitiated,{
+        foreignKey:'userId'
+      })
     }
   }
   User.init(
