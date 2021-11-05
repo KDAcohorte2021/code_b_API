@@ -3,6 +3,7 @@ const paths = {
   usersBaseURI: "/api/user",
   roleBaseURI: "/api/role",
   answersBaseURI: "/api/answer",
+  themeBaseURI: "/api/theme",
 };
 
 module.exports = paths;
