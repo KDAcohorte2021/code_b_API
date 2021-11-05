@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   TypesQuestion.init({
-    id: {
-      type:DataTypes.STRING(255),
-      allowNull: false,
-    },
     name: {
       type:DataTypes.STRING(255),
       allowNull: false,
