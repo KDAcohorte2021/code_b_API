@@ -54,6 +54,30 @@ async function updateAnswer(
   }
 }
 
+async function deleteAnswer({ params: { id } }, response) {
+  try {
+    const deletedAnswer = await Answers.findOne({
+      where: {
+        id,
+      },
+    });
+    const answer = await Answers.destroy({
+      where: {
+        id,
+      },
+    });
+    if (!answer)
+      return response
+        .status(400)
+        .json({ error: "A problem occurred when adding the answer" });
+    response
+      .status(200)
+      .json({ message: "Answer deleted successfully", deletedAnswer });
+  } catch (error) {
+    response.status(500).json({ error: ` ${error}` });
+  }
+}
+
 async function getAnswer(request, response) {
   const { id } = request.params;
   try {
@@ -87,4 +111,4 @@ async function getAnswers(request, response) {
   }
 }
 
-module.exports = { answer, updateAnswer, getAnswer, getAnswers };
+module.exports = { answer, updateAnswer, deleteAnswer, getAnswer, getAnswers };

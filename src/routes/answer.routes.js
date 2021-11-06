@@ -11,4 +11,6 @@ answerRouter.post("/register", answerController.answer);
 
 answerRouter.put("/update/:id", answerController.updateAnswer);
 
+answerRouter.delete("/delete/:id", answerController.deleteAnswer);
+
 module.exports = answerRouter;
